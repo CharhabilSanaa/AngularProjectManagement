@@ -1,0 +1,35 @@
+<!--la premiere partie fait afficher la liste des taches-->
+<h4 *ngIf="!isvide" class="List-group" [ngStyle]="{ color: 'White' }" ><i class="fas fa-exclamation-circle"></i> Your List is Empty  </h4>
+<li *ngFor="let EventObject of tables_events; let id = index" [ngClass]="{'list-group-item':true,
+'list-group-item-success': EventStatus==='valide',
+'list-group-item-danger' : EventStatus==='non valide' }">
+  <div style="width:20px ; height:20px ;background-color:red; "
+  *ngIf="EventStatus==='non valide'"></div>
+<!--la liste des taches-->
+  <h4 [ngStyle]="{ color: getColor() }" > Event: {{EventObject.EventNames}} -- Objectif:{{EventObject.EventObjectifs}} -- Place:{{EventObject.EventPlaces}} -- Time:{{EventObject.EventTimes}} -- Details:{{EventObject.Details}}  -- Status: {{EventObject.EventStatus}}  </h4>
+  <button class="btn btn-primary" (click)="onEDIT()"><i class="fas fa-pencil-alt"></i> Edit </button>
+  <button class="btn btn-success" style="background:mediumorchid; border: mediumorchid ;margin : 40px 10px;" (click)="onWork()">More details...</button>
+  <button class="btn btn-danger" (click)="onDELETE(id)"><i class="fas fa-trash-alt"></i> Delete Event</button>
+</li>
+<br>
+<!--la deuxieme partie concerne le tableau des inputs-->
+<form *ngIf="isAddition" (ngSubmit)="onSAVE(f)" #f="ngForm">
+  <div class="list-group-item" style="background:beige">
+  <h4 [ngStyle]="{ color: 'black' }" > New Event : </h4>
+  <label [ngStyle]="{ color: 'black' }" > The name of the Event :</label>
+  <input name="EventName" type="text" class="form-control" placeholder="The name of the Event" [(ngModel)]="EventName">
+  <label [ngStyle]="{ color: 'black' }" > The Purpose :</label>
+  <input name="EventObjectif" type="text" class="form-control" placeholder="Why?" [(ngModel)]="EventObjectif">
+  <label [ngStyle]="{ color: 'black' }" > The Place :</label>
+  <input name="EventPlace" type="text" class="form-control" placeholder="Where?" [(ngModel)]="EventPlace">
+  <label [ngStyle]="{ color: 'black' }" > The Date :</label>
+  <input name="EventDate" type="date" class="form-control" placeholder="Where?" [(ngModel)]="EventDate">
+  <label [ngStyle]="{ color: 'black' }" > Time :</label>
+  <input name="EventTime" type="time" class="form-control" placeholder="When?" [(ngModel)]="EventTime">
+  <label [ngStyle]="{ color: 'black' }" > More Details :</label>
+  <input name="Details" type="text" class="form-control" placeholder="Details" [(ngModel)]="Details">
+  <button type="submit" class="btn btn-success" style="background:coral;border:coral;" (click)="onSAVE()">Save</button>
+  </div>
+</form>
+<br>
+<button class="btn btn-success" style="margin : 40px 10px;" (click)="onADD()"><i class="fas fa-plus"></i> Add a new Event</button>

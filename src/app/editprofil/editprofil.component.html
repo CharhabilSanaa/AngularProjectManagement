@@ -1,0 +1,62 @@
+<div id="back">
+  <div class="col-xs-12">
+      <br>
+      <h2><i class="fas fa-edit"></i> Your Profil:</h2>
+      <br>
+      <p> Last Update: {{LastUpdate | date:'short'}}</p>
+  <ul class="List-group" style="width:999px">
+      <li  [ngClass]="{'list-group-item':true}" style="background:beige;width:560px;">
+          <form (ngSubmit)="onSubmit(f)" #f="ngForm">
+            <div class="form-group">
+              <label for="UserFirstName" [ngStyle]="{ color: 'black' }">
+                First Name:
+              </label >
+              <input type="text" id="UserFirstName" style="width:450px;" class="form-control" name="UserFirstName" ngModel required>
+            </div>
+            <div class="form-group">
+              <label  for="UserLastName" [ngStyle]="{ color: 'black' }">
+                Last Name:
+              </label >
+              <input type="text" id="UserLastName" style="width:450px;" class="form-control" name="UserLastName" ngModel required>
+            </div>
+            <div class="form-group">
+                <label  for="UserEmail" [ngStyle]="{ color: 'black' }">
+                  Your Email:
+                </label >
+                <input type="Email" id="UserEmail" style="width:450px;" class="form-control" name="UserEmail" ngModel required>
+            </div>
+            <div class="form-group">
+                <label  for="UserPassword1" [ngStyle]="{ color: 'black' }">
+                  Password:
+                </label >
+                <input type="password" id="UserPassword1" style="width:450px;" class="form-control" name="UserPassword1" ngModel required>
+            </div>
+            <div class="form-group">
+                <label  for="UserPassword2" [ngStyle]="{ color: 'black' }">
+                  Confirm Password:
+                </label >
+                <input type="password" id="UserPassword2" style="width:450px;" class="form-control" name="UserPassword2" ngModel required>
+            </div>
+            <div class="form-group" >
+              <label  for="UserType" [ngStyle]="{ color: 'black' }">
+                You are:
+              </label >
+              <select id="UserType" class="form-control" style="width:450px;" name="UserType" [ngModel]='defaulttype' required>
+                <option value="Admin">Admin</option>
+                <option value="ScrumMaster">Scrum Master</option>
+                <option value="Member">Member of a project</option>
+              </select>
+            </div>
+            <div class="form-group">
+                <label  for="UserPhone" [ngStyle]="{ color: 'black' }">
+                  Phone Number:
+                </label >
+                <input style="width:450px;" type="number" style="width:450px;"  id="UserPhone" class="form-control" name="UserPhone" ngModel required>
+            </div>
+            <button type="submit" class="btn btn-secondary" style="margin-right: 30px;width: 180px"  (click)="onCancel()">Cancel</button>
+            <button type="submit" (click)="onSubmit()" style="width: 180px;" class="btn btn-primary" [disabled]="f.invalid" >Save</button>
+          </form>
+    </li>
+  </ul>
+  </div>
+</div>

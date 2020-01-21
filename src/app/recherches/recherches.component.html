@@ -1,0 +1,13 @@
+<div id="back">
+  <div class="col-xs-12">
+      <br>
+      <h2><i class="fas fa-search"></i> The Result of Your Searchs:</h2>
+      <br>
+      <p> Last Update: {{LastUpdate | date:'short'}}</p>
+      <ul class="List-group" style="width:999px">
+        <form class="form-inline my-2 my-lg-0" (ngSubmit)="OnSearch(f)" #f="ngForm">
+          <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+          </form>
+      </ul>
+  </div>
+  

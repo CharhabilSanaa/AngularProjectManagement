@@ -1,0 +1,37 @@
+<!--la premiere partie fait afficher la liste des taches-->
+<li  [ngClass]="{'list-group-item':true}" style="background:beige;width:760px;">
+  <!--la liste des taches-->
+  <h4 [ngStyle]="{ color: 'black' }" > Member: Mr.Administrateur  --   Member Post: Admin -- </h4>
+  <button class="btn btn-primary" disabled (click)="onEDIT()"> <i class="fas fa-pencil-alt"></i> Edit </button><button class="btn btn-primary" style="background-color:orchid;border: orchid ;margin:6px;" >...More Details</button>
+</li>
+<li *ngFor="let MemberObject of tables_members ; let id = index" [ngClass]="{'list-group-item':true}" style="background:beige;width:760px;">
+  <!--la liste des taches-->
+  <h4 [ngStyle]="{ color: 'black' }" > Member: {{MemberObject.MemberNames}}  --   Member Post: {{MemberObject.MemberPosts}} -- </h4>
+  <button class="btn btn-primary" disabled (click)="onEDIT()"> <i class="fas fa-pencil-alt"></i> Edit </button><input type="file" class="btn btn-success" style="background:mediumorchid; border: mediumorchid ;margin : 40px 10px;" (click)="onWork()" ADD Work><button class="btn btn-danger" (click)="onDELETE(id)"><i class="fas fa-trash-alt"></i> Delete Member</button><button class="btn btn-primary" style="background-color:indianred  ;margin:6px;" >...More Details</button>
+</li>
+<br>
+  <!--la deuxieme partie concerne le tableau des inputs-->
+<div ng-app="myapp" ng-controller="myCtrl">
+<form *ngIf="isAddition" (ngSubmit)="onSAVE(f)" #f="ngForm" method="POST" action="members.component.php">
+  <div class="list-group-item" style="background:beige;width:760px;">
+  <h4 [ngStyle]="{ color: 'black' }" > New Member to This Project :  </h4>
+  <label [ngStyle]="{ color: 'black' }" > Name of This Member:</label>
+  <select *ngIf="isAddition" id="MemberName" class="form-control" name="MemberName" placeholder="The name of the Member" [(ngModel)]="MemberName" required>
+    <option value="Mr.A.ADNANE">Mr.A.ADNANE</option>
+    <option value="MLLE S.CHERGUI">MLLE S.CHERGUI</option>
+    <option value="Mr.A.MOKHTAR">Mr.A.MOKHTAR</option>
+    <option value="Mlle.J.GHALLOUB">Mlle.J.GHALLOUB</option>
+    <option value="Mr.B.SAADANI">Mr.B.SAADANI</option>
+    <option value="Mme.K.SORAT">Mme.K.SORAT</option>
+    <option value="Mme.L.AYAT">Mme.L.AYAT</option>
+  </select>
+  <label [ngStyle]="{ color: 'black' }" > The Post:</label>
+  <select *ngIf="isAddition" id="MemberPost" class="form-control" name="MemberPost" placeholder="His Post " [(ngModel)]="MemberPost" required>
+    <option value="Member">Member</option>
+  </select> 
+  <button  type="submit" class="btn btn-success" name="onSAVE" style="background:coral;border:coral;" (click)="onSAVE()">Save</button> 
+  </div>
+</form>
+</div>
+<br>
+<button class="btn btn-success" (click)="onADD()" style="margin : 40px 10px;"><i class="fas fa-plus"></i> Add a new Member</button>

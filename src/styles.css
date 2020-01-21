@@ -1,0 +1,56 @@
+.par{
+	text-align: center;
+	color:white;
+	padding-bottom: 10px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif
+}
+/* ceci est un fichier css pour le design de la page d'acceuil de la plateforme Orga-projet*/
+/* ce fichier css est pour le design du site*/
+/*-- ---navigation--*/
+*{
+	margin: 0;
+	padding: 0;
+}
+#nav-bar{
+	position: sticky;
+	top:0;
+	z-index: 10;
+}
+.navbar-nav li{
+	padding: 0  10px;
+ 
+}
+.navbar-nav li a{
+	float: right;
+	text-align: left;
+}
+.nav-link:hover{
+	color: black!important;
+	background:rgb(238, 253, 250);
+	border:none!important;
+	font-weight: 600;
+	font-size: 16px;
+	
+}
+#services{
+	background-image: linear-gradient(rgba(0, 0, 0, 0.4),rgba(0, 0, 0, 0.4)),url(1.jpg);
+	background-size:cover;
+	/*background-size: 300px 150px; */
+	background-position: fixed;
+	color:#efefef !important;
+	background-attachment: fixed;
+	padding-top:10px;
+	padding-bottom: 90px;
+	padding-left: 210px;
+	padding-right: 500px;
+
+}
+
+#services h1{
+	text-align: center;
+	color:#efefef;
+	padding-bottom: 10px;
+}
+.img-box label{
+	color:grey;
+}

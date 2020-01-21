@@ -1,0 +1,41 @@
+<!--cette page contient les donnees affichees dans la page d'acceuil avec tous les bouttons et les formulaires-->
+<div id="services">
+<br>
+<br>
+<h1 style="text-align: center">Welcome in Orga-Projet !</h1>
+<br>
+<br>
+<h5  *ngIf="!isStart">Start Using Orga-Projet to Make your dreams True and your Project realisable and Successful.</h5><br>
+<h5  *ngIf="!isStart">You can check the progress of your projects, edit them, add new ideas as well as new documents.</h5><br>
+<h5  *ngIf="!isStart">Just Trust US! and you will see that Soon you will write your Success Story!</h5>
+<br>
+<br>
+<h4 *ngIf="isStart">Enter Please Your informations:</h4>
+<input *ngIf="isStart" type="text" class="form-control" placeholder="Pseudo code or Email" [(ngModel)]="Email">
+<br *ngIf="isStart">
+<input *ngIf="isStart" type="password" class="form-control" id="password" placeholder="Password" [(ngModel)]="password">
+<br *ngIf="isStart">
+<button class="btn btn-success" style="background:darkorange; border: sandybrown ;margin-left: 10px;width:650px;height: 50px;" *ngIf="!isWelcome" (click)="onVar()"><i class="fas fa-hand-point-right"></i>
+Start
+</button>
+<button class="btn btn-success" *ngIf="isvar" style="background:gray; border:gray ;margin-left: 20px;width:300px;height: 50px;"  (click)="onLogIn()">
+  Sign In
+</button>
+<button class="btn btn-success" *ngIf="isvar" style="background:rgb(78, 104, 223); border:rgb(78, 104, 223) ;float:right;margin-bottom: 90px;width:300px;height: 50px;"  (click)="onStart()">
+  Log In
+</button>
+<br>
+<button class="btn btn-success" style="background:cornflowerblue; border:cornflowerblue;width:650px;height: 50px;" *ngIf="isStart" (click)="onLog()">
+  Log In
+</button>
+<br>
+<br>
+<button  *ngIf="isStart" class="btn btn-success" style="background:indianred; border:indianred ;width:650px;height: 50px;">
+  I forget My Password
+</button>
+<h4 *ngIf="!isLogOut" >Congratulations!! You are connected </h4>
+<br *ngIf="!isLogOut">
+<button class="btn btn-success" style="background:crimson; border:crimson ;margin-left: 60px;width:650px;height: 50px;" *ngIf="!isLogOut" (click)="offLog()"><i class="fas fa-power-off"></i>
+  Log Out
+</button>
+<br>

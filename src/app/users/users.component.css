@@ -1,0 +1,15 @@
+#inscription{
+	background-image: linear-gradient(rgba(0, 0, 0, 0.4),rgba(0, 0, 0, 0.4)),url(manager.jpg);
+	background-size:cover;
+	background-position: fixed;
+	color:#efefef !important;
+	background-attachment: fixed;
+	padding-top:10px;
+	padding-bottom: 6px;
+	padding-left: 490px;
+	padding-right: 440px;
+}
+#inscription input{
+	width:350px;
+	height: 30px;
+}

@@ -1,0 +1,43 @@
+<!--la premiere partie fait afficher la liste des taches-->
+<div ng-app="MyApp" ng-controller="MyCtrl">
+  <h4 *ngIf="!isvide" class="List-group" [ngStyle]="{ color: 'White' }" ><i class="fas fa-exclamation-circle"></i> Your List is Empty  </h4>
+  <li *ngFor="let TaskObject of tables_tasks ; let id = index" [ngClass]="{'list-group-item':true,
+                  'list-group-item-success': TaskStatus==='valide',
+                  'list-group-item-danger' : TaskStatus==='non valide' }" >
+    <div style="width:20px ; height:20px ;background-color:red; "
+    *ngIf="TaskStatus==='non valide'"></div>
+    <!--la liste des taches-->
+    <h4 [ngStyle]="{ color: getColor() }" > Task: {{TaskObject.TaskNames}} -- Member: {{TaskObject.TaskMembers}} -- Objectif: {{TaskObject.TaskObjectifs}} --First Date: {{TaskObject.TaskFirstDates}} --Last Date: {{TaskObject.TaskLastDates}} -- Status:{{TaskObject.TasksStatus}}</h4>
+    <button class="btn btn-primary" disabled (click)="onEDIT()"> <i class="fas fa-pencil-alt"></i> Edit </button>
+    <input type="file" class="btn btn-success" style="background:mediumorchid; border: mediumorchid ;margin : 40px 10px;" (click)="onWork()" ADD Work>  
+    <button class="btn btn-danger" (click)="onDELETE(id)"><i class="fas fa-trash-alt"></i> Delete Task</button>
+  </li>
+  <br>
+    <!--la deuxieme partie concerne le tableau des inputs-->
+  <form *ngIf="isAddition" (ngSubmit)="onSAVE(f)" #f="ngForm">
+    <div class="list-group-item" style="background:beige">
+    <h4 [ngStyle]="{ color: 'black' }" > New Task : </h4>
+    <label [ngStyle]="{ color: 'black' }" > The name of the task:</label>
+    <input  type="text" class="form-control" id="TaskName" name="TaskName" placeholder="The name of the task" [(ngModel)]="TaskName">
+    <label [ngStyle]="{ color: 'black' }" > Who have to do it:</label>
+    <select *ngIf="isAddition" id="TaskMember" class="form-control" name="TaskMember" placeholder="Who have to do it" [(ngModel)]="TaskMember" required>
+      <option value="Mr.A.ADNANE">Mr.A.ADNANE</option>
+      <option value="MLLE S.CHERGUI">MLLE S.CHERGUI</option>
+      <option value="Mr.A.MOKHTAR">Mr.A.MOKHTAR</option>
+      <option value="Mlle.J.GHALLOUB">Mlle.J.GHALLOUB</option>
+      <option value="Mr.B.SAADANI">Mr.B.SAADANI</option>
+      <option value="Mme.K.SORAT">Mme.K.SORAT</option>
+      <option value="Mme.L.AYAT">Mme.L.AYAT</option>
+    </select>
+    <label [ngStyle]="{ color: 'black' }" > The purpose:</label>
+    <input  type="text" class="form-control" id="TaskObjectif" name="TaskObjectif" placeholder="The purpose" [(ngModel)]="TaskObjectif">
+    <label [ngStyle]="{ color: 'black' }" > First Date of The Task:</label>
+    <input *ngIf="isAddition" type="date" class="form-control" id="TaskFirstDate" name="TaskFirstDate" placeholder="This Project will Start" [(ngModel)]="TaskFirstDate">
+    <label [ngStyle]="{ color: 'black' }" > Last Date of the task:</label>
+    <input *ngIf="isAddition" type="date" class="form-control" id="TaskLastDate" name="TaskLastDate" placeholder="This Deadline" [(ngModel)]="TaskLastDate">
+    <button  type="submit" class="btn btn-success" style="background:coral;border:coral;" (click)="onSAVE()">Save</button> 
+    </div>
+  </form>
+  <br>
+  <button class="btn btn-success" (click)="onADD()" style="margin : 40px 10px;"><i class="fas fa-plus"></i> Add a new Task</button>
+  

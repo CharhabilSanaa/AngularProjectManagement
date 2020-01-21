@@ -1,0 +1,58 @@
+<div class="row" id="inscription" ng-app="myapp" ng-controller="mycontrol">
+  <div class="col-sm-8 col-sm-offset-2">
+  <div id="Slider">
+  <div id="headerSlider" class="carousel slide" data-ride="carousel">
+    <form (ngSubmit)="onSubmit(f)" #f="ngForm">
+      <div class="form-group">
+        <br>
+        <br>
+        <h5 for="UserFirstName">
+          First Name:
+        </h5 >
+        <input type="text" id="UserFirstName" style="width:450px;" class="form-control" name="UserFirstName" ngModel required>
+      </div>
+      <div class="form-group">
+        <h5  for="UserLastName">
+          Last Name:
+        </h5 >
+        <input type="text" id="UserLastName" style="width:450px;" class="form-control" name="UserLastName" ngModel required>
+      </div>
+      <div class="form-group">
+          <h5  for="UserEmail">
+            Your Email:
+          </h5 >
+          <input type="Email" id="UserEmail" style="width:450px;" class="form-control" name="UserEmail" ngModel required>
+      </div>
+      <div class="form-group">
+          <h5  for="UserPassword1">
+            Password:
+          </h5 >
+          <input type="password" id="UserPassword1" style="width:450px;" class="form-control" name="UserPassword1" ngModel required>
+      </div>
+      <div class="form-group">
+          <h5  for="UserPassword2">
+            Confirm Password:
+          </h5 >
+          <input type="password" id="UserPassword2" style="width:450px;" class="form-control" name="UserPassword2" ngModel required>
+      </div>
+      <div class="form-group">
+        <h5  for="UserType">
+          You are:
+        </h5 >
+        <select id="UserType" class="form-control" style="width:450px;" name="UserType" [ngModel]='defaulttype' required>
+          <option value="Admin">Admin</option>
+          <option value="ScrumMaster">Scrum Master</option>
+          <option value="Member">Member of a project</option>
+        </select>
+      </div>
+      <div class="form-group">
+          <h5  for="UserPhone">
+            Phone Number:
+          </h5 >
+          <input style="width:450px;" type="number" style="width:450px;"  id="UserPhone" class="form-control" name="UserPhone" ngModel required>
+      </div>
+      <button type="submit" class="btn btn-secondary" style="margin-right: 30px;width: 180px"  (click)="onCancel()">Cancel</button>
+      <button type="submit" (click)="onSubmit()" style="width: 180px;" class="btn btn-primary" [disabled]="f.invalid" >Sign In</button>
+    </form>
+  </div>
+</div>

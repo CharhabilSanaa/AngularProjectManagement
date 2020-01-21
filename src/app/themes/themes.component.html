@@ -1,0 +1,21 @@
+<div id="back">
+  <div class="col-xs-12">
+      <br>
+      <h2><i class="fas fa-grip-horizontal"></i> List of Our Themes:</h2>
+      <br>
+      <h4 [ngStyle]="{ color: 'white' }" > Welcome ! Now you can change color Theme :</h4>
+      <p> Last Update: {{LastUpdate | date:'short'}}</p>
+      <ul class="List-group" style="width:999px">
+<form [ngClass]="{'list-group-item':true}" style="background:beige;width:760px;"  (ngSubmit)="onSAVE(f)" #f="ngForm" method="POST">
+  <label [ngStyle]="{ color: 'black' }" > Choose a Themes:</label>
+  <select class="form-control" placeholder="see themes" required>
+    <option value="default Theme">default Theme of orga-project</option>
+    <option value="Light">Light</option>
+    <option value="Dark">Dark</option>
+    <option value="Tomorrow Night">Tomorrow Night</option>
+  </select>
+  <button  type="submit" class="btn btn-success" name="onSAVE" style="background:coral;border:coral;" (click)="onSAVE()">Save</button> 
+</form>
+<button class="btn btn-success" (click)="onADD()" style="margin : 40px 10px;"><i class="fas fa-plus"></i> Change Theme of Orga-Project</button>
+</ul>
+</div>

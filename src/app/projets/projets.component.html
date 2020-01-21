@@ -1,0 +1,67 @@
+<!--la premiere partie fait afficher la liste des projets-->
+<h4 *ngIf="!isvide" class="List-group" [ngStyle]="{ color: 'White' }" ><i class="fas fa-exclamation-circle"></i> Your List is Empty  </h4>
+<li *ngFor="let ProjectObject of tables_projects; let id = index" [ngClass]="{'list-group-item':true,
+                'list-group-item-success': ProjectStatus==='valide',
+                'list-group-item-danger' : ProjectStatus==='non valide' }">
+  <div style="width:20px ; height:20px ;background-color:red; "
+  *ngIf="ProjectStatus==='non valide'"></div>
+  <!--la liste des taches-->
+  <h4 [ngStyle]="{ color: getColor() }" > Project: {{ProjectObject.ProjectNames}} -- Chef of Project: {{ProjectObject.ProjectChefs}} --StartDate:{{ProjectObject.ProjectFirstDates}} -- DeadLine: {{ProjectObject.ProjectLastDates}}  -- Purpose: {{ProjectObject.ProjectObjectifs}} -- Budget: {{ProjectObject.ProjectBudgets}} -- Status: {{ProjectObject.ProjectStatus}} </h4>
+  <button class="btn btn-primary" style="margin : 40px 10px;"  (click)="onEDIT()"> <i class="fas fa-pencil-alt"></i> Edit </button>     <button class="btn btn-danger" (click)="onDELETE(id)"><i class="fas fa-trash-alt"></i> Delete Project</button>
+  <form *ngIf="isModification" (ngSubmit)="onEDIT(f)" #f="ngForm">
+    <div class="list-group-item" style="background:beige">
+    <h4 [ngStyle]="{ color: 'black' }" > Project: {{getProjectName()}} -- StartDate:{{getProjectFirstDate()}} -- DeadLine: {{getProjectLastDate()}} -- Purpose: {{getProjectObjectif()}} -- Budget: {{getProjectBudget()}}  --Status: {{getProjectStatus()}} </h4>
+    <label [ngStyle]="{ color: 'black' }" > Name of This Project:</label>
+    <input *ngIf="isModification" type="text" class="form-control" id="ProjectName" name="ProjectName" placeholder="The name of the Project" [(ngModel)]="ProjectName">
+    <label [ngStyle]="{ color: 'black' }" > Please choose a Chef :</label>
+    <select *ngIf="isModification" id="ProjectChef" class="form-control" name="ProjectChef" placeholder="Please Choose a Chef " [(ngModel)]="ProjectChef" required>
+      <option value="Mr.S.DRIOUCH">Chef: Mr.S.DRIOUCH</option>
+      <option value="Mme N.CHERKAOUI">Chef: Mme N.CHERKAOUI</option>
+      <option value="Mr.A.BENJELLOUN">Chef: Mr.A.BENJELLOUN</option>
+      <option value="Mlle.J.GHAOULATI">Chef: Mlle.J.GHAOULATI</option>
+      <option value="Mlle.A.BOUDOUNIT">Chef: Mr.B.BOUDOUNIT</option>
+      <option value="Mlle.A.BOUDOUNIT">Chef: Mme.K.SAMAH</option>
+      <option value="Mlle.A.BOUDOUNIT">Chef: Mme.L.EZZERIOULI</option>
+    </select>    
+    <label [ngStyle]="{ color: 'black' }" > First Date:</label>
+    <input *ngIf="isModification" type="date" class="form-control" id="ProjectFirstDate" name="ProjectFirstDate" placeholder="This Project will Start" [(ngModel)]="ProjectFirstDate">
+    <label [ngStyle]="{ color: 'black' }" > Last Date:</label>
+    <input *ngIf="isModification" type="date" class="form-control" id="ProjectLastDate" name="ProjectLastDate" placeholder="This Project Must be finishedon" [(ngModel)]="ProjectLastDate">
+    <label [ngStyle]="{ color: 'black' }" > The Purpose:</label>
+    <input *ngIf="isModification" type="text" class="form-control" id="ProjectObjectif" name="ProjectObjectif" placeholder="The purpose of This Project" [(ngModel)]="ProjectObjectif">
+    <label [ngStyle]="{ color: 'black' }" > The Budget (DIRHAMS):</label>
+    <input *ngIf="isModification" type="text" class="form-control" id="ProjectBudget" name="ProjectBudget" placeholder="The Budget?" [(ngModel)]="ProjectBudget">
+    <button type="submit" class="btn btn-success" style="background:coral;border:coral;" (click)="onSAVE()">Save</button>
+  </div>
+  </form>
+</li>
+<br>
+  <!--la deuxieme partie concerne le tableau des inputs-->
+<form *ngIf="isAddition" (ngSubmit)="onSAVE(f)" #f="ngForm">
+  <div class="list-group-item" style="background:beige">
+  <h4 [ngStyle]="{ color: 'black' }" > New Project : </h4>
+  <label [ngStyle]="{ color: 'black' }" > Name of This Project:</label>
+  <input *ngIf="isAddition" type="text" class="form-control" id="ProjectName" name="ProjectName" placeholder="The name of the Project" [(ngModel)]="ProjectName">
+  <label [ngStyle]="{ color: 'black' }" > Please choose a Chef :</label>
+  <select *ngIf="isAddition" id="ProjectChef" class="form-control" name="ProjectChef" placeholder="Please Choose a Chef " [(ngModel)]="ProjectChef" required>
+      <option value="Mr.S.DRIOUCH">Chef: Mr.S.DRIOUCH</option>
+      <option value="Mme N.CHERKAOUI">Chef: Mme N.CHERKAOUI</option>
+      <option value="Mr.A.BENJELLOUN">Chef: Mr.A.BENJELLOUN</option>
+      <option value="Mlle.J.GHAOULATI">Chef: Mlle.J.GHAOULATI</option>
+      <option value="Mlle.A.BOUDOUNIT">Chef: Mr.B.BOUDOUNIT</option>
+      <option value="Mlle.A.BOUDOUNIT">Chef: Mme.K.SAMAH</option>
+      <option value="Mlle.A.BOUDOUNIT">Chef: Mme.L.EZZERIOULI</option>
+  </select>
+  <label [ngStyle]="{ color: 'black' }" > First Date:</label>
+  <input *ngIf="isAddition" type="date" class="form-control" id="ProjectFirstDate" name="ProjectFirstDate" placeholder="This Project will Start" [(ngModel)]="ProjectFirstDate">
+  <label [ngStyle]="{ color: 'black' }" > Last Date:</label>
+  <input *ngIf="isAddition" type="date" class="form-control" id="ProjectLastDate" name="ProjectLastDate" placeholder="This Project Must be finishedon" [(ngModel)]="ProjectLastDate">
+  <label [ngStyle]="{ color: 'black' }" > The Purpose:</label>
+  <input *ngIf="isAddition" type="text" class="form-control" id="ProjectObjectif" name="ProjectObjectif" placeholder="The purpose of This Project" [(ngModel)]="ProjectObjectif">
+  <label [ngStyle]="{ color: 'black' }" > The Budget (DIRHAMS):</label>
+  <input *ngIf="isAddition" type="text" class="form-control" id="ProjectBudget" name="ProjectBudget" placeholder="The Budget?" [(ngModel)]="ProjectBudget">
+  <button type="submit" class="btn btn-success" style="background:coral;border:coral;" (click)="onSAVE()">Save</button>
+</div>
+</form>
+<br>
+<button class="btn btn-success" (click)="onADD()" style="margin : 40px 10px;" ><i class="fas fa-plus"></i> Add a new Project</button>
